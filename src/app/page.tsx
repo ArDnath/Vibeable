@@ -1,10 +1,10 @@
-import React from 'react'
-import { Button } from '@/components/ui/button'
+import prisma from '@/lib/db'
 
-export default function Page() {
+export default async function Home() {
+  const users = await prisma.user.findMany();
   return (
-    <div className='text-3xl font-bold '>
-      <Button variant={'secondary'}>Button</Button>
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center -mt-16">
+      {JSON.stringify(users, null, 2)}
     </div>
-  )
+  );
 }
